@@ -31,37 +31,113 @@ A **hands-on, beginner-friendly** course: one small Jupyter notebook per day, fr
 
 ---
 
-## ⚙️ Setup (5 minutes)
+## 🚀 Quick start (for learners)
 
-### 1. Get the code
+**Prerequisites:** Python **3.10+**, Git, and an OpenAI API key (only needed from Day 4: <https://platform.openai.com/api-keys>).
+
+### Step 1 — Clone the repository
 ```bash
 git clone https://github.com/ajeetkumarAI/LangGraph-Handson-Notebook.git
 cd LangGraph-Handson-Notebook
 ```
+No Git? On the GitHub page, click **Code → Download ZIP** and unzip it.
 
-### 2. Create a virtual environment and install
-```bash
+### Step 2 — Create an environment and install the packages
+
+**Option A: venv (works everywhere)**
+
+Windows (Command Prompt / PowerShell):
+```bat
 python -m venv .venv
-# Windows:      .venv\Scripts\activate
-# Mac / Linux:  source .venv/bin/activate
+.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 3. Add your OpenAI key (needed from Day 4)
-Copy `.env.example` to `.env` **in the repo root** and paste your key:
+Mac / Linux:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
-OPENAI_API_KEY=sk-...
+
+**Option B: Anaconda**
+```bash
+conda create -n langgraph python=3.11 -y
+conda activate langgraph
+pip install -r requirements.txt
+```
+
+✅ Check it worked:
+```bash
+python -c "import langgraph, langchain_openai; print('Ready!')"
+```
+
+### Step 3 — Add your OpenAI key (from Day 4)
+
+Make a copy of `.env.example` and name it **`.env`** (in the main repo folder, next to this README):
+
+```bash
+# Windows
+copy .env.example .env
+# Mac / Linux
+cp .env.example .env
+```
+
+Open `.env` in any editor and paste your key:
+```
+OPENAI_API_KEY=sk-...your-key...
 OPENAI_MODEL=gpt-4.1-nano
 ```
-Every notebook loads it with `load_dotenv(find_dotenv(usecwd=True))`, which searches the notebook's folder and its parents, so one `.env` in the root works for all days.
 
-🔒 `.env` is in `.gitignore`, so it is never pushed to GitHub. **Never paste keys into notebooks.**
+Every notebook loads it automatically with `load_dotenv(find_dotenv(usecwd=True))`. It searches the notebook's folder **and its parent folders**, so one `.env` in the root works for all 16 days.
 
-### 4. Open the notebooks
+🔒 `.env` is listed in `.gitignore`, so it is never pushed to GitHub. **Never paste your key into a notebook.**
+
+### Step 4 — Open and run the notebooks
+
+**Jupyter:**
 ```bash
-jupyter notebook          # or open the folder in VS Code
+jupyter notebook
 ```
-Start with **Day 1** and run the cells top to bottom with `Shift + Enter`.
+Your browser opens. Go to `Day01_Graph_Basics/` → open `Day01_Graph_Basics.ipynb`.
+
+**VS Code:** open the repo folder → open a notebook → click **Select Kernel** (top right) → choose the `.venv` (or `langgraph` conda) environment.
+
+Run cells **top to bottom** with `Shift + Enter`. Each notebook has a `%pip install` cell at the top, so it also works on **Google Colab** (upload the notebook, then add your key with `os.environ["OPENAI_API_KEY"] = ...` in a private cell, or use Colab Secrets).
+
+### Step 5 — Follow the days in order
+
+```
+Day01 → Day02 → Day03      core graph skills, no API key, free
+Day04 → … → Day09          LLMs, chatbots, tools, memory, human-in-the-loop, streaming
+Day10 → … → Day16          advanced patterns, multi-agent, RAG, production, capstone
+```
+
+For each day: read → run → do the **🧪 Try it** prompts → solve the **Practice** exercises before you look at the solutions.
+
+### Getting updates
+```bash
+git pull
+```
+(If you edited a notebook, save your copy under a new name first, e.g. `Day05_my_notes.ipynb`, to avoid merge conflicts.)
+
+---
+
+## 📁 Repository structure
+
+```
+LangGraph-Handson-Notebook/
+├── README.md                  ← you are here
+├── requirements.txt           ← all packages for all 16 days
+├── .env.example               ← copy to .env and add your key
+├── Day01_Graph_Basics/
+│   └── Day01_Graph_Basics.ipynb
+├── Day02_State_and_Reducers/
+│   └── ...
+├── ...
+├── Day16_Capstone_Research_Assistant/
+└── archive/                   ← older versions of the notebooks
+```
 
 ---
 
