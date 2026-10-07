@@ -1,59 +1,72 @@
-# 🦜🕸️ LangGraph — Zero to Advanced in 16 Days
+# LangGraph from Zero to Advanced: a 16-Day Hands-On Course
 
-A **hands-on, beginner-friendly** course: one small Jupyter notebook per day, from your very first graph to a multi-agent research assistant. Every lesson is short: **explain → run the code → check → try it yourself**. Every day ends with practice exercises and solutions.
+This repository is a step-by-step course on LangGraph, written the way I teach it in class. There's one Jupyter notebook per day. We start with plain Python graphs (no API key, no cost) and finish with a multi-agent research assistant.
 
-> Built and tested with **LangGraph 1.2** and **LangChain 1.4** (Python 3.10+). The LLM is **OpenAI `gpt-4.1-nano`** — small, fast and very cheap.
+Each notebook is meant to be *worked through*, not just read:
+
+- **Plain explanations first.** Every idea starts with an everyday comparison and a short note on why it matters, before any code.
+- **Predict, then run.** Before key cells you're asked to guess the output. The answer is hidden in a click-to-expand box, so you can check yourself.
+- **"Your turn" cells.** Small pieces of starter code where you change one thing and see what happens.
+- **Common mistakes.** The errors students actually run into, shown live, with the fix.
+- **Small cells.** One function, one class or one building step per cell, so you can run and understand one piece at a time.
+- **Practice exercises** at the end of every day, with solutions.
+
+The notebooks were written and tested with LangGraph 1.2 and LangChain 1.4 on Python 3.10 and above. The LLM lessons use OpenAI's `gpt-4.1-nano`, which is small, fast and very cheap.
 
 ---
 
-## 🗺️ Course map
+## Course outline
 
-| Day | Notebook | You will learn | API key? |
+| Day | Notebook | What you'll learn | API key needed? |
 |---|---|---|---|
-| 🟢 1 | [Day01_Graph_Basics](Day01_Graph_Basics/Day01_Graph_Basics.ipynb) | State, nodes, edges, `START`/`END`, `compile`, `invoke`, `stream` | ❌ |
-| 🟢 2 | [Day02_State_and_Reducers](Day02_State_and_Reducers/Day02_State_and_Reducers.ipynb) | Overwrite vs reducers, custom reducers, parallel nodes, input/output schemas | ❌ |
-| 🟢 3 | [Day03_Branches_and_Loops](Day03_Branches_and_Loops/Day03_Branches_and_Loops.ipynb) | Conditional edges, `Literal` routers, loops, recursion limit, `Command` | ❌ |
-| 🟡 4 | [Day04_LLM_and_Messages](Day04_LLM_and_Messages/Day04_LLM_and_Messages.ipynb) | `.env` setup, `ChatOpenAI`, messages, streaming tokens, LLM inside a node | ✅ |
-| 🟡 5 | [Day05_Chatbot_MessagesState](Day05_Chatbot_MessagesState/Day05_Chatbot_MessagesState.ipynb) | `add_messages`, `MessagesState`, system prompts, multi-turn, `trim_messages` | ✅ |
-| 🟡 6 | [Day06_Tools_and_Agents](Day06_Tools_and_Agents/Day06_Tools_and_Agents.ipynb) | `@tool`, `bind_tools`, ReAct loop by hand, `ToolNode`, `tools_condition`, `create_agent` | ✅ |
-| 🟠 7 | [Day07_Memory_Checkpointers](Day07_Memory_Checkpointers/Day07_Memory_Checkpointers.ipynb) | Checkpointers, `thread_id`, `get_state`, history, SQLite memory, summarizing | ✅ |
-| 🟠 8 | [Day08_Human_in_the_Loop](Day08_Human_in_the_Loop/Day08_Human_in_the_Loop.ipynb) | `interrupt()`, `Command(resume=)`, approvals, edits, `update_state`, time travel | ✅ |
-| 🟠 9 | [Day09_Streaming_and_Async](Day09_Streaming_and_Async/Day09_Streaming_and_Async.ipynb) | Stream modes, token streaming, custom events, async & parallel speed-up | ✅ |
-| 🔴 10 | [Day10_Structured_Output_and_Workflows](Day10_Structured_Output_and_Workflows/Day10_Structured_Output_and_Workflows.ipynb) | Structured output, chaining, routing, parallelization, evaluator–optimizer | ✅ |
-| 🔴 11 | [Day11_Map_Reduce_with_Send](Day11_Map_Reduce_with_Send/Day11_Map_Reduce_with_Send.ipynb) | `Send`, map-reduce, orchestrator–workers | ✅ |
-| 🔴 12 | [Day12_Subgraphs_and_Multi_Agent](Day12_Subgraphs_and_Multi_Agent/Day12_Subgraphs_and_Multi_Agent.ipynb) | Subgraphs, supervisor pattern, handoffs | ✅ |
-| 🔴 13 | [Day13_Agentic_RAG](Day13_Agentic_RAG/Day13_Agentic_RAG.ipynb) | Embeddings, vector store, RAG graph, agentic & self-correcting RAG | ✅ |
-| 🔴 14 | [Day14_Long_Term_Memory_Store](Day14_Long_Term_Memory_Store/Day14_Long_Term_Memory_Store.ipynb) | `Store`, runtime context, cross-thread memory, semantic memory search | ✅ |
-| 🟣 15 | [Day15_Production_Skills](Day15_Production_Skills/Day15_Production_Skills.ipynb) | Retries, caching, fallbacks, Functional API, testing, LangSmith, deployment | ✅ |
-| 🏆 16 | [Day16_Capstone_Research_Assistant](Day16_Capstone_Research_Assistant/Day16_Capstone_Research_Assistant.ipynb) | Everything together: plan → approve → parallel research → write → review | ✅ |
+| 1 | [Your First Graph](Day01_Graph_Basics/Day01_Graph_Basics.ipynb) | State, nodes, edges, START and END, compile, invoke, stream | No |
+| 2 | [State and Reducers](Day02_State_and_Reducers/Day02_State_and_Reducers.ipynb) | Overwrite vs. combine, custom reducers, parallel nodes, input/output schemas | No |
+| 3 | [Branches and Loops](Day03_Branches_and_Loops/Day03_Branches_and_Loops.ipynb) | Routers, `Literal`, loops, recursion limit, `Command` | No |
+| 4 | [Talking to an LLM](Day04_LLM_and_Messages/Day04_LLM_and_Messages.ipynb) | `.env` setup, `ChatOpenAI`, message types, streaming, an LLM inside a node | Yes |
+| 5 | [Building a Chatbot](Day05_Chatbot_MessagesState/Day05_Chatbot_MessagesState.ipynb) | `add_messages`, `MessagesState`, system prompts, multi-turn chat, trimming | Yes |
+| 6 | [Tools and Your First Agent](Day06_Tools_and_Agents/Day06_Tools_and_Agents.ipynb) | `@tool`, `bind_tools`, the agent loop by hand, `ToolNode`, `create_agent` | Yes |
+| 7 | [Memory](Day07_Memory_Checkpointers/Day07_Memory_Checkpointers.ipynb) | Checkpointers, thread ids, `get_state`, SQLite memory, summarizing long chats | Yes |
+| 8 | [Human in the Loop](Day08_Human_in_the_Loop/Day08_Human_in_the_Loop.ipynb) | `interrupt()`, approvals, edits, approving tool calls, time travel | Yes |
+| 9 | [Streaming and Async](Day09_Streaming_and_Async/Day09_Streaming_and_Async.ipynb) | Stream modes, token streaming, custom progress, async and parallel calls | Yes |
+| 10 | [Structured Output and Workflow Patterns](Day10_Structured_Output_and_Workflows/Day10_Structured_Output_and_Workflows.ipynb) | Pydantic output, chaining, routing, parallelization, evaluator loops | Yes |
+| 11 | [Map-Reduce with Send](Day11_Map_Reduce_with_Send/Day11_Map_Reduce_with_Send.ipynb) | `Send`, map-reduce, orchestrator and workers | Yes |
+| 12 | [Subgraphs and Multi-Agent Systems](Day12_Subgraphs_and_Multi_Agent/Day12_Subgraphs_and_Multi_Agent.ipynb) | Subgraphs, a supervisor team, agent handoffs | Yes |
+| 13 | [Agentic RAG](Day13_Agentic_RAG/Day13_Agentic_RAG.ipynb) | Embeddings, vector stores, RAG, agentic and self-correcting RAG | Yes |
+| 14 | [Long-Term Memory](Day14_Long_Term_Memory_Store/Day14_Long_Term_Memory_Store.ipynb) | The Store, runtime context, remembering users across chats | Yes |
+| 15 | [Getting Ready for the Real World](Day15_Production_Skills/Day15_Production_Skills.ipynb) | Retries, caching, fallbacks, Functional API, testing, LangSmith, deployment | Yes |
+| 16 | [Capstone: a Research Assistant](Day16_Capstone_Research_Assistant/Day16_Capstone_Research_Assistant.ipynb) | One complete project using almost everything above | Yes |
 
-⏱️ Each day takes about **45–75 minutes**.
+Plan for about 45 to 75 minutes per day.
 
 ---
 
-## 🚀 Quick start (for learners)
+## Getting started
 
-**Prerequisites:** Python **3.10+**, Git, and an OpenAI API key (only needed from Day 4: <https://platform.openai.com/api-keys>).
+You'll need Python 3.10 or newer and Git. From Day 4 onwards you'll also need an OpenAI API key, which you can create at https://platform.openai.com/api-keys.
 
-### Step 1 — Clone the repository
+### Step 1: Clone the repository
+
 ```bash
 git clone https://github.com/ajeetkumarAI/LangGraph-Handson-Notebook.git
 cd LangGraph-Handson-Notebook
 ```
-No Git? On the GitHub page, click **Code → Download ZIP** and unzip it.
 
-### Step 2 — Create an environment and install the packages
+If you don't use Git, open the repository on GitHub, click **Code**, then **Download ZIP**, and unzip it.
 
-**Option A: venv (works everywhere)**
+### Step 2: Create an environment and install the packages
 
-Windows (Command Prompt / PowerShell):
+**Option A: venv**
+
+On Windows (Command Prompt or PowerShell):
+
 ```bat
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Mac / Linux:
+On Mac or Linux:
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
@@ -61,146 +74,146 @@ pip install -r requirements.txt
 ```
 
 **Option B: Anaconda**
+
 ```bash
 conda create -n langgraph python=3.11 -y
 conda activate langgraph
 pip install -r requirements.txt
 ```
 
-✅ Check it worked:
+To check that everything installed correctly:
+
 ```bash
-python -c "import langgraph, langchain_openai; print('Ready!')"
+python -c "import langgraph, langchain_openai; print('Ready')"
 ```
 
-### Step 3 — Add your OpenAI key (from Day 4)
+### Step 3: Add your OpenAI key (needed from Day 4)
 
-Make a copy of `.env.example` and name it **`.env`** (in the main repo folder, next to this README):
+Make a copy of `.env.example` called `.env`, in the main folder of the repository (next to this README):
 
 ```bash
 # Windows
 copy .env.example .env
+
 # Mac / Linux
 cp .env.example .env
 ```
 
-Open `.env` in any editor and paste your key:
+Open `.env` in any text editor and paste your key:
+
 ```
 OPENAI_API_KEY=sk-...your-key...
 OPENAI_MODEL=gpt-4.1-nano
 ```
 
-Every notebook loads it automatically with `load_dotenv(find_dotenv(usecwd=True))`. It searches the notebook's folder **and its parent folders**, so one `.env` in the root works for all 16 days.
+Every notebook loads this file automatically. It searches the notebook's own folder and then the parent folders, so one `.env` in the main folder works for all 16 days.
 
-🔒 `.env` is listed in `.gitignore`, so it is never pushed to GitHub. **Never paste your key into a notebook.**
+Please don't paste your key into a notebook. `.env` is listed in `.gitignore`, so it never gets uploaded to GitHub. A notebook, on the other hand, is easy to share by accident.
 
-### Step 4 — Open and run the notebooks
+### Step 4: Open the notebooks
 
 **Jupyter:**
+
 ```bash
 jupyter notebook
 ```
-Your browser opens. Go to `Day01_Graph_Basics/` → open `Day01_Graph_Basics.ipynb`.
 
-**VS Code:** open the repo folder → open a notebook → click **Select Kernel** (top right) → choose the `.venv` (or `langgraph` conda) environment.
+Your browser will open. Go into `Day01_Graph_Basics` and open `Day01_Graph_Basics.ipynb`.
 
-Run cells **top to bottom** with `Shift + Enter`. Each notebook has a `%pip install` cell at the top, so it also works on **Google Colab** (upload the notebook, then add your key with `os.environ["OPENAI_API_KEY"] = ...` in a private cell, or use Colab Secrets).
+**VS Code:** open the repository folder, open a notebook, click **Select Kernel** in the top right, and choose your `.venv` (or the `langgraph` conda environment).
 
-### Step 5 — Follow the days in order
+**Google Colab:** upload a notebook. Each one has a `%pip install` cell at the top. Add your key with Colab's **Secrets** panel rather than typing it into a cell.
+
+Run the cells from top to bottom with `Shift + Enter`.
+
+### Step 5: Work through the days in order
 
 ```
-Day01 → Day02 → Day03      core graph skills, no API key, free
-Day04 → … → Day09          LLMs, chatbots, tools, memory, human-in-the-loop, streaming
-Day10 → … → Day16          advanced patterns, multi-agent, RAG, production, capstone
+Days 1 to 3     The core of LangGraph, with plain Python. No API key, no cost.
+Days 4 to 9     LLMs, chatbots, tools, memory, human approval, streaming.
+Days 10 to 16   Advanced patterns, multi-agent systems, RAG, production, capstone.
 ```
 
-For each day: read → run → do the **🧪 Try it** prompts → solve the **Practice** exercises before you look at the solutions.
+A suggestion from experience: when a notebook asks you to predict an output, actually stop and guess before opening the answer. And try the practice exercises before looking at the solutions. That's where most of the learning happens.
 
 ### Getting updates
+
 ```bash
 git pull
 ```
-(If you edited a notebook, save your copy under a new name first, e.g. `Day05_my_notes.ipynb`, to avoid merge conflicts.)
+
+If you've edited a notebook, save your copy under a different name first (for example `Day05_my_notes.ipynb`), so your changes don't clash with the update.
 
 ---
 
-## 📁 Repository structure
+## Repository layout
 
 ```
 LangGraph-Handson-Notebook/
-├── README.md                  ← you are here
-├── requirements.txt           ← all packages for all 16 days
-├── .env.example               ← copy to .env and add your key
-├── Day01_Graph_Basics/
-│   └── Day01_Graph_Basics.ipynb
-├── Day02_State_and_Reducers/
-│   └── ...
-├── ...
-├── Day16_Capstone_Research_Assistant/
-└── archive/                   ← older versions of the notebooks
+    README.md               this file
+    requirements.txt        all the packages for all 16 days
+    .env.example            copy this to .env and add your key
+    Day01_Graph_Basics/
+        Day01_Graph_Basics.ipynb
+    Day02_State_and_Reducers/
+    ...
+    Day16_Capstone_Research_Assistant/
+    archive/                older versions of the notebooks
 ```
 
 ---
 
-## 📘 How each notebook is organised
+## The pattern you'll use every day
 
-```
-Title + goal + lesson table
- └─ Setup cell (install + load .env)
- └─ Lesson 1: idea in plain English → small diagram → code → ✅ check → 🧪 try it
- └─ Lesson 2 …
- └─ Mini project (combines the day's lessons)
- └─ Practice exercises + ✅ solutions
- └─ 🎯 Recap + what's next
-```
-
-* `✅` cells contain small `assert` checks. If they run without errors, your code works.
-* `show_graph(app)` draws each graph as a picture (needs internet). Offline, it prints Mermaid text you can paste into <https://mermaid.live>.
-
----
-
-## 💰 Cost
-
-All LLM lessons use `gpt-4.1-nano` with short prompts. The **whole course costs only a few rupees** of API usage. To use a smarter model (for example in the multi-agent lessons), set `OPENAI_MODEL=gpt-4.1-mini` in `.env`.
-
----
-
-## 🧠 The 5-step recipe you'll use every day
+Every graph in this course is built with the same five steps:
 
 ```python
 from typing import TypedDict
 from langgraph.graph import StateGraph, START, END
 
-class State(TypedDict):                 # 1. State
+# 1. Describe the state
+class State(TypedDict):
     text: str
 
-def shout(state: State) -> dict:        # 2. Node
+# 2. Write a node (a plain function)
+def shout(state: State) -> dict:
     return {"text": state["text"].upper()}
 
-builder = StateGraph(State)             # 3. Builder + nodes
+# 3. Create a builder and add the node
+builder = StateGraph(State)
 builder.add_node("shout", shout)
-builder.add_edge(START, "shout")        # 4. Edges
+
+# 4. Connect it with edges
+builder.add_edge(START, "shout")
 builder.add_edge("shout", END)
 
-app = builder.compile()                 # 5. Compile + run
+# 5. Compile and run
+app = builder.compile()
 print(app.invoke({"text": "hello langgraph"}))
 ```
 
 ---
 
-## 🛠️ Troubleshooting
+## Cost
 
-| Problem | Fix |
-|---|---|
-| `OPENAI_API_KEY not found` | `.env` must be in the repo root (next to this README) and the line must be `OPENAI_API_KEY=sk-...` with no quotes or spaces |
-| `ModuleNotFoundError` | activate your venv and run `pip install -r requirements.txt` again, then restart the kernel |
-| Graph picture doesn't show | you are offline, so use the printed Mermaid text instead |
-| `GraphRecursionError` | your loop has no exit. Check your router, or raise `recursion_limit` |
-| An agent behaves oddly | nano is a tiny model, so try `OPENAI_MODEL=gpt-4.1-mini` |
+All the LLM lessons use `gpt-4.1-nano` with short prompts, so working through the whole course costs only a few rupees in API usage. If a lesson needs a smarter model (the multi-agent day is the most demanding), set `OPENAI_MODEL=gpt-4.1-mini` in `.env`.
 
 ---
 
-## 👨‍🏫 Trainer
+## Troubleshooting
 
-Created by **Ajeetkumar** — GenAI Engineer. ⭐ Star the repo if it helps you learn!
+| Problem | What to check |
+|---|---|
+| `OPENAI_API_KEY not found` | `.env` must be in the main folder, next to this README. The line must be exactly `OPENAI_API_KEY=sk-...`, with no quotes or spaces. On Windows, make sure the file isn't secretly called `.env.txt`. Restart the kernel after creating it. |
+| `ModuleNotFoundError` | Activate your environment, run `pip install -r requirements.txt` again, and restart the kernel. |
+| The graph picture doesn't appear | Drawing the picture needs internet. Offline, the notebook prints the diagram as text, which you can paste into https://mermaid.live. |
+| `GraphRecursionError` | A loop never reached its exit. Check your router's condition. |
+| An agent behaves strangely | `gpt-4.1-nano` is a very small model. Try `OPENAI_MODEL=gpt-4.1-mini`. |
 
-📜 License: see [LICENSE](LICENSE).
+---
+
+## About
+
+Course written by **Ajeetkumar**, GenAI Engineer. If it helped you, a star on the repository is always appreciated.
+
+License: see [LICENSE](LICENSE).
